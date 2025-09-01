@@ -1,0 +1,83 @@
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block page_title %}blog{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% endcompress %}
+    </head>
+    <body class="bg-black">
+
+
+<nav class="bg-black border-b border-gray-50 sticky top-0 z-50">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="{% url 'home_page' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
+          {% comment %} <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" /> {% endcomment %}
+          <span class="self-center text-l font-light whitespace-nowrap dark:text-white font-mono tracking-wider">asheshjyoti.</span>
+      </a>
+      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden" aria-controls="navbar-default" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          </svg>
+      </button>
+      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 
+            md:flex-row md:space-x-8 rtl:space-x-reverse 
+           md:mt-0  ">
+  <li>
+    <a href="{% url 'home_page' %}" 
+    class="block px-3 rounded-sm font-mono text-base
+    {% if request.path == '/' %}
+      text-orange-400  md:bg-transparent md:text-orange-400 md:p-0
+    {% else %}
+      text-gray-900 md:p-0 md:hover:bg-transparent md:hover:text-orange-700 dark:text-white md:dark:hover:text-orange-500 md:dark:hover:bg-transparent opacity-50
+    {% endif %}"
+{% if request.path == '/posts/' %}aria-current="page"{% endif %}>
+   Home
+</a>
+  </li>
+  <hr class="border-t border-gray-50 opacity-30 my-2">
+  <li>
+    <a href="{% url 'posts_page' %}" 
+       class="block px-3 rounded-sm font-mono text-base
+              {% if request.path == '/posts/' %}
+                text-orange-400  md:bg-transparent md:text-orange-400 md:p-0
+              {% else %}
+               text-gray-900 md:p-0 md:hover:bg-transparent md:hover:text-orange-700 dark:text-white md:dark:hover:text-orange-500 md:dark:hover:bg-transparent opacity-50
+
+              {% endif %}"
+       {% if request.path == '/posts/' %}aria-current="page"{% endif %}>
+       All posts
+    </a>
+  </li>
+</ul>   
+          {% comment %} <li>
+            <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
+          </li> {% endcomment %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+        <div class="container mx-auto">
+            
+            {% block page_body %}
+                The default body
+            {% endblock %}
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    </body>
+</html>
