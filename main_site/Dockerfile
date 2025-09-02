@@ -35,6 +35,7 @@ RUN npm run build
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
+
 # Expose Django port
 EXPOSE 8000
 
